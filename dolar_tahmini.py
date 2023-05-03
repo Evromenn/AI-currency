@@ -8,19 +8,20 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
 from pandas_datareader import data as pdr
+import yfinance as yf
 
 '''
 baslangic ve bitis tarihlerini asagidan duzeltebilirsiniz ayrica egitimin kac defa yapilacagini da alttaki "egitim_sayisi" degiskenin
 degerini degistirerek belirtebilirsiniz!
 "ticker" degiskenin degerini de yahoo finance sitesinde doviz kisaltmalariyla degistirerek farkli islemlerde yapabilirsiniz.
 '''
-ticker = 'USDTRY=X'
+ticker = "USDTRY=X"
+start = dt.datetime(2021, 1, 1)
 end = dt.datetime.now()
-start = dt.datetime(2019,1,1)
 egitim_sayisi = 1
 
 #dolar Turk Lirasi verilerinin yahoo finance sitesinde cekilmesi
-df = pdr.get_data_yahoo(ticker, start, end)
+df = yf.download(ticker, start_date, end_date)
 
 data = df.filter(['Close'])
 
